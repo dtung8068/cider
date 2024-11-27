@@ -88,6 +88,8 @@ class SVHN(data.Dataset):
         if self.target_transform is not None:
             target = self.target_transform(target)
 
+        if np.lib.NumpyVersion(np.__version__) >= 1.2:
+            return img, target.astype(np.longlong)
         return img, target.astype(np.long)
 
     def __len__(self):
